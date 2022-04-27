@@ -21,50 +21,18 @@
    <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <ToggleButton layoutX="133.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="buttons" text="My word">
+   <ToggleButton fx:id="myword" layoutX="133.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" selected="true" styleClass="toggle-buttons" text="My word">
       <font>
-         <Font name="Goudy Old Style" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="24.0" />
       </font>
       <toggleGroup>
          <ToggleGroup fx:id="word_choosing" />
       </toggleGroup>
-      <textFill>
-         <RadialGradient centerX="0.5" centerY="0.5" radius="0.55343512906373">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.6052631735801697" green="0.5847141146659851" blue="0.5847141146659851" />
-                  </color>
-               </Stop>
-            </stops>
-         </RadialGradient>
-      </textFill>
    </ToggleButton>
-   <ToggleButton layoutX="468.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="buttons" text="Pick for me" toggleGroup="$word_choosing">
+   <ToggleButton fx:id="pickforme" layoutX="468.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="toggle-buttons" text="Pick for me" toggleGroup="$word_choosing">
       <font>
-         <Font name="Goudy Old Style" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="24.0" />
       </font>
-      <textFill>
-         <RadialGradient centerX="0.5" centerY="0.5" radius="0.55343512906373">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color red="1.0" green="1.0" blue="1.0" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.6052631735801697" green="0.5847141146659851" blue="0.5847141146659851" />
-                  </color>
-               </Stop>
-            </stops>
-         </RadialGradient>
-      </textFill>
    </ToggleButton>
    <Label layoutX="271.0" layoutY="54.0" text="Hangman" textAlignment="CENTER">
       <font>
@@ -116,7 +84,7 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <Button layoutX="706.0" layoutY="448.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNextClick" prefWidth="80.0" styleClass="buttons" text="Next" fx:id="next">
+   <Button fx:id="next" layoutX="706.0" layoutY="448.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNextClick" prefWidth="80.0" styleClass="buttons" text="Next">
       <font>
          <Font name="Goudy Old Style" size="20.0" />
       </font>

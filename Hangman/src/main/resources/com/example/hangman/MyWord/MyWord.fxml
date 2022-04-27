@@ -5,6 +5,7 @@
 <?import javafx.scene.control.Label?>
 <?import javafx.scene.control.TextArea?>
 <?import javafx.scene.control.ToggleButton?>
+<?import javafx.scene.control.ToggleGroup?>
 <?import javafx.scene.image.Image?>
 <?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
@@ -67,7 +68,7 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <Button fx:id="previous" layoutX="14.0" layoutY="448.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPreviousClick" prefHeight="38.0" prefWidth="111.0" styleClass="buttons" text="Previous">
+   <Button fx:id="mainMenu" layoutX="14.0" layoutY="448.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onMainMenuClick" prefHeight="38.0" prefWidth="140.0" styleClass="buttons" text="Main Menu">
       <font>
          <Font name="Goudy Old Style" size="20.0" />
       </font>
@@ -88,22 +89,25 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <TextArea layoutX="250.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter word...">
+   <TextArea fx:id="mw_textArea" layoutX="250.0" layoutY="225.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="40.0" prefWidth="300.0" promptText="Enter word...">
       <font>
          <Font name="Goudy Old Style" size="20.0" />
       </font>
    </TextArea>
-   <ToggleButton layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="buttons" text="Random">
+   <ToggleButton fx:id="rand" layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
+      <font>
+         <Font name="Goudy Old Style Bold" size="18.0" />
+      </font>
+      <toggleGroup>
+         <ToggleGroup fx:id="show" />
+      </toggleGroup>
+   </ToggleButton>
+   <ToggleButton fx:id="none" layoutX="197.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="None" toggleGroup="$show">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <ToggleButton layoutX="197.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="buttons" text="None">
-      <font>
-         <Font name="Goudy Old Style Bold" size="18.0" />
-      </font>
-   </ToggleButton>
-   <ToggleButton layoutX="338.0" layoutY="354.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="buttons" text="Vowels">
+   <ToggleButton fx:id="vowels" layoutX="338.0" layoutY="354.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Vowels" toggleGroup="$show">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>

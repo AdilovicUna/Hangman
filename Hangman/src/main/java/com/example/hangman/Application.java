@@ -8,13 +8,13 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application {
     protected static String currWindowPath = "Menu";
+
     @Override
     public void start(Stage stage) throws IOException {
         startWindow(stage);
     }
 
     protected static void switchWindows(Stage stage)  throws IOException {
-        stage.close();
         startWindow(stage);
     }
 
