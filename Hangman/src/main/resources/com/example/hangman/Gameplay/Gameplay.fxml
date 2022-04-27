@@ -23,7 +23,7 @@
    <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <Label layoutX="271.0" layoutY="54.0" text="Hangman" textAlignment="CENTER">
+   <Label fx:id="title" layoutX="271.0" layoutY="54.0" text="Hangman" textAlignment="CENTER" visible="false">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>
@@ -70,148 +70,57 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <AnchorPane layoutX="226.0" layoutY="372.0" prefHeight="109.0" prefWidth="348.0">
+   <Polyline fx:id="hang1" fill="#385c1100" layoutX="13.0" layoutY="-5.0" points="235.0, 193.0, 235.0, 169.0, 150.0, 169.0, 150.0, 316.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0" visible="false" />
+   <Polyline fx:id="hang2" fill="#80ff0000" layoutX="5.0" layoutY="8.0" points="178.0, 323.0, 178.0, 303.0, 138.0, 303.0, 138.0, 323.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" visible="false" />
+   <Circle fx:id="head" fill="WHITE" layoutX="248.0" layoutY="205.0" radius="17.0" stroke="WHITE" strokeType="INSIDE" visible="false" />
+   <Line fx:id="hang3" endX="18.0" endY="-20.0" layoutX="183.0" layoutY="185.0" startX="-20.0" startY="13.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0" visible="false" />
+   <Line fx:id="body" endX="2.0" endY="38.0" layoutX="246.0" layoutY="250.0" startX="2.0" startY="-29.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" visible="false" />
+   <Line fx:id="l_arm" endX="20.0" endY="-4.0" layoutX="256.0" layoutY="260.0" startX="-6.0" startY="-27.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" visible="false" />
+   <Line fx:id="r_arm" endX="-3.0" endY="-12.0" layoutX="224.0" layoutY="266.0" startX="22.0" startY="-32.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" visible="false" />
+   <Line fx:id="r_leg" endX="3.0" endY="-6.0" layoutX="224.0" layoutY="320.0" startX="22.0" startY="-32.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" visible="false" />
+   <Line fx:id="l_leg" endX="16.0" layoutX="254.0" layoutY="313.0" startX="-6.0" startY="-27.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" visible="false" />
+   <Label fx:id="word" layoutX="368.0" layoutY="229.0" text="HANGMAN_WORD" textFill="WHITE" visible="false">
+      <font>
+         <Font name="Goudy Old Style Bold" size="36.0" />
+      </font>
+   </Label>
+   <Button fx:id="start" layoutX="300.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onStartClicked" prefHeight="70.0" prefWidth="200.0" styleClass="buttons" text="Start">
+      <font>
+         <Font name="Goudy Old Style Bold" size="36.0" />
+      </font>
+   </Button>
+   <AnchorPane fx:id="keyboard" layoutX="226.0" layoutY="372.0" prefHeight="109.0" prefWidth="348.0" visible="false">
       <children>
-         <ToggleButton maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Q">
+         <ToggleButton fx:id="q" accessibleRole="BUTTON" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onQClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Q">
             <toggleGroup>
                <ToggleGroup fx:id="Abc" />
             </toggleGroup>
          </ToggleButton>
-         <ToggleButton layoutX="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="W">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="E">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="R">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="T">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Y">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="213.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="U">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="283.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="I">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1111111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="248.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="O">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11111111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="P">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111111111" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="16.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="A">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc2" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="52.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="S">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc12" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="88.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="D">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="124.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="F">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="159.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="G">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="194.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="H">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="229.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="J">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1111112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="262.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="K">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11111112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="297.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="L">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111111112" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="51.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Z">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc21" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="87.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="X">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc121" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="123.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="C">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1121" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="159.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="V">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11121" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="194.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="B">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc111121" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="229.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="N">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc1111121" />
-            </toggleGroup>
-         </ToggleButton>
-         <ToggleButton layoutX="264.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onABCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="M">
-            <toggleGroup>
-               <ToggleGroup fx:id="Abc11111121" />
-            </toggleGroup>
-         </ToggleButton>
+         <ToggleButton fx:id="w" accessibleRole="BUTTON" layoutX="36.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onWClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="W" toggleGroup="$Abc" />
+         <ToggleButton fx:id="e" accessibleRole="BUTTON" layoutX="72.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onEClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="E" toggleGroup="$Abc" />
+         <ToggleButton fx:id="r" accessibleRole="BUTTON" layoutX="108.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onRClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="R" toggleGroup="$Abc" />
+         <ToggleButton fx:id="t" accessibleRole="BUTTON" layoutX="143.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onTClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="T" toggleGroup="$Abc" />
+         <ToggleButton fx:id="y" accessibleRole="BUTTON" layoutX="178.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onYClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Y" toggleGroup="$Abc" />
+         <ToggleButton fx:id="u" accessibleRole="BUTTON" layoutX="213.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onUClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="U" toggleGroup="$Abc" />
+         <ToggleButton fx:id="i" accessibleRole="BUTTON" layoutX="248.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onIClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="I" toggleGroup="$Abc" />
+         <ToggleButton fx:id="o" accessibleRole="BUTTON" layoutX="283.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="O" toggleGroup="$Abc" />
+         <ToggleButton fx:id="p" accessibleRole="BUTTON" layoutX="320.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onPClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="P" toggleGroup="$Abc" />
+         <ToggleButton fx:id="a" accessibleRole="BUTTON" layoutX="16.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onAClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="A" toggleGroup="$Abc" />
+         <ToggleButton fx:id="s" accessibleRole="BUTTON" layoutX="52.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onSClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="S" toggleGroup="$Abc" />
+         <ToggleButton fx:id="d" accessibleRole="BUTTON" layoutX="88.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onDClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="D" toggleGroup="$Abc" />
+         <ToggleButton fx:id="f" accessibleRole="BUTTON" layoutX="124.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onFClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="F" toggleGroup="$Abc" />
+         <ToggleButton fx:id="g" accessibleRole="BUTTON" layoutX="159.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onGClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="G" toggleGroup="$Abc" />
+         <ToggleButton fx:id="h" accessibleRole="BUTTON" layoutX="194.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onHClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="H" toggleGroup="$Abc" />
+         <ToggleButton fx:id="j" accessibleRole="BUTTON" layoutX="229.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onJClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="J" toggleGroup="$Abc" />
+         <ToggleButton fx:id="k" accessibleRole="BUTTON" layoutX="262.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onKClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="K" toggleGroup="$Abc" />
+         <ToggleButton fx:id="l" accessibleRole="BUTTON" layoutX="297.0" layoutY="35.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onLClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="L" toggleGroup="$Abc" />
+         <ToggleButton fx:id="z" accessibleRole="BUTTON" layoutX="51.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onZClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="Z" toggleGroup="$Abc" />
+         <ToggleButton accessibleRole="BUTTON" layoutX="87.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onXClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="X" toggleGroup="$Abc" fx:id="x" />
+         <ToggleButton fx:id="c" accessibleRole="BUTTON" layoutX="123.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onCClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="C" toggleGroup="$Abc" />
+         <ToggleButton fx:id="v" accessibleRole="BUTTON" layoutX="159.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onVClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="V" toggleGroup="$Abc" />
+         <ToggleButton fx:id="b" accessibleRole="BUTTON" layoutX="194.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onBClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="B" toggleGroup="$Abc" />
+         <ToggleButton fx:id="n" accessibleRole="BUTTON" layoutX="229.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onNClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="N" toggleGroup="$Abc" />
+         <ToggleButton fx:id="m" accessibleRole="BUTTON" layoutX="264.0" layoutY="73.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onMClick" prefHeight="28.0" prefWidth="28.0" styleClass="abc-buttons" text="M" toggleGroup="$Abc" />
       </children>
    </AnchorPane>
-   <Polyline fill="#385c1100" layoutX="13.0" layoutY="-5.0" points="235.0, 193.0, 235.0, 169.0, 150.0, 169.0, 150.0, 316.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0" />
-   <Polyline fill="#80ff0000" layoutX="5.0" layoutY="8.0" points="178.0, 323.0, 178.0, 303.0, 138.0, 303.0, 138.0, 323.0" stroke="WHITE" strokeType="INSIDE" strokeWidth="4.0" />
-   <Circle fill="WHITE" layoutX="248.0" layoutY="205.0" radius="17.0" stroke="WHITE" strokeType="INSIDE" />
-   <Line endX="18.0" endY="-20.0" layoutX="183.0" layoutY="185.0" startX="-20.0" startY="13.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="4.0" />
-   <Line endX="2.0" endY="38.0" layoutX="246.0" layoutY="250.0" startX="2.0" startY="-29.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" />
-   <Line endX="20.0" endY="-4.0" layoutX="256.0" layoutY="260.0" startX="-6.0" startY="-27.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" />
-   <Line endX="-3.0" endY="-12.0" layoutX="224.0" layoutY="266.0" startX="22.0" startY="-32.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" />
-   <Line endX="3.0" endY="-6.0" layoutX="224.0" layoutY="320.0" startX="22.0" startY="-32.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" />
-   <Line endX="16.0" layoutX="254.0" layoutY="313.0" startX="-6.0" startY="-27.0" stroke="WHITE" strokeLineCap="ROUND" strokeLineJoin="ROUND" strokeWidth="6.0" />
-   <AnchorPane fx:id="wordArea" layoutX="339.0" layoutY="263.0" prefHeight="56.0" prefWidth="348.0" />
 </AnchorPane>

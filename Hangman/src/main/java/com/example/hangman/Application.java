@@ -8,17 +8,13 @@ import java.io.IOException;
 
 public class Application extends javafx.application.Application {
     protected static String currWindowPath = "Menu";
-
+    protected static Model model;
     @Override
     public void start(Stage stage) throws IOException {
-        startWindow(stage);
+        switchWindows(stage);
     }
 
     protected static void switchWindows(Stage stage)  throws IOException {
-        startWindow(stage);
-    }
-
-    private static void startWindow(Stage stage)  throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(String.format("%s/%s.fxml", currWindowPath, currWindowPath)));
         Scene scene = new Scene(fxmlLoader.load());
         stage.setTitle("Hangman");

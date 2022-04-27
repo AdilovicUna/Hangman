@@ -10,14 +10,14 @@ import java.util.List;
 import java.util.Random;
 
 public class Model {
-    public String word;
     public String wordToShow;
+    public Boolean changed = false;
+    private String word;
     private String[] types = {"adjective", "noun", "verb"};
 
     public Model(String myWord, String show) {
         word = myWord;
         pickDisplayLetters(show);
-        System.out.println(word + " " + wordToShow);
     }
 
     public Model(String difficulty, String type, String show) {
@@ -26,15 +26,16 @@ public class Model {
         }
         word = getRandomWord(String.format("/%s/%s.txt",difficulty,type));
         pickDisplayLetters(show);
-        System.out.println(word + " " + wordToShow);
     }
 
     private void pickDisplayLetters(String show){
         char[] result = new char [word.length()];
         switch (show){
             case "none":
-                wordToShow = word;
-                return;
+                for (int i = 0; i < word.length(); i++) {
+                    result[i] = '_';
+                }
+                break;
             case "vowels":
                 for (int i = 0; i < word.length(); i++) {
                     if (isVowel(word.charAt(i))) {
@@ -74,5 +75,19 @@ public class Model {
         }
         Random random = new Random();
         return allWords.get(random.nextInt(allWords.size()));
+    }
+
+    protected void updateWordToShow(Character ch){
+        char[] result = new char [word.length()];
+        for (int i = 0; i < word.length(); i++) {
+            if (Character.isAlphabetic(wordToShow.charAt(i)) || word.charAt(i) == ch){
+                result[i] = word.charAt(i);
+            } else {
+                result[i] = '_';
+            }
+        }
+        String newWordToShow = String.valueOf(result);
+        changed = !wordToShow.equals(newWordToShow);
+        wordToShow = newWordToShow;
     }
 }
