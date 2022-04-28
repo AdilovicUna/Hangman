@@ -15,6 +15,7 @@ public class Model {
     public String wordToShow;
     public ArrayList<Character> lettersShown = new ArrayList<Character>() {};
     public Boolean changed = false;
+    public Boolean finished = false;
     private String word;
     private String[] types = {"adjective", "noun", "verb"};
 
@@ -103,5 +104,6 @@ public class Model {
         String newWordToShow = String.valueOf(result);
         changed = !wordToShow.equals(newWordToShow);
         wordToShow = newWordToShow;
+        finished = wordToShow.equals(word);
     }
 }

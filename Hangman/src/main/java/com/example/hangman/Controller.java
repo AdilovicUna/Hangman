@@ -245,10 +245,29 @@ public class Controller {
         Character letter = button.idProperty().getValue().charAt(0);
         Application.model.updateWordToShow(letter);
         word.textProperty().setValue(Application.model.wordToShow);
-        if (Application.model.changed){
-            System.out.println("changed");
-        } else {
-            System.out.println("not changed");
+
+        if (Application.model.finished) {
+            Application.currWindowPath = "Win";
+            Application.switchWindows((Stage) mainMenu.getScene().getWindow());
+        }
+
+        if (!Application.model.changed){
+           if (!head.visibleProperty().getValue()){
+               head.setVisible(true);
+           } else if (!body.visibleProperty().getValue()){
+               body.setVisible(true);
+           } else if (!r_arm.visibleProperty().getValue()){
+               r_arm.setVisible(true);
+           } else if (!l_arm.visibleProperty().getValue()){
+               l_arm.setVisible(true);
+           } else if (!r_leg.visibleProperty().getValue()){
+               r_leg.setVisible(true);
+           } else if (!l_leg.visibleProperty().getValue()){
+               l_leg.setVisible(true);
+           } else {
+               Application.currWindowPath = "GameOver";
+               Application.switchWindows((Stage) mainMenu.getScene().getWindow());
+           }
         }
     }
 
