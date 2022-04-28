@@ -1,6 +1,10 @@
-.buttons{
+.buttons, .toggle-buttons{
     -fx-color: black;
     -fx-border-radius: 80px;
+}
+
+.toggle-buttons:selected {
+    -fx-color: LightGray;
 }
 
 .abc-buttons{

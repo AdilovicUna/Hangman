@@ -16,12 +16,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hangman.Controller">
    <stylesheets>
-      <URL value="@stylesheet.css" />
+      <URL value="@../stylesheet.css" />
    </stylesheets>
    <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <ToggleButton fx:id="myword" layoutX="133.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" selected="true" styleClass="toggle-buttons" text="My word">
+   <ToggleButton fx:id="MyWord" layoutX="133.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" selected="true" styleClass="toggle-buttons" text="My word">
       <font>
          <Font name="Goudy Old Style Bold" size="24.0" />
       </font>
@@ -29,7 +29,7 @@
          <ToggleGroup fx:id="word_choosing" />
       </toggleGroup>
    </ToggleButton>
-   <ToggleButton fx:id="pickforme" layoutX="468.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="toggle-buttons" text="Pick for me" toggleGroup="$word_choosing">
+   <ToggleButton fx:id="PickForMe" layoutX="468.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" styleClass="toggle-buttons" text="Pick for me" toggleGroup="$word_choosing">
       <font>
          <Font name="Goudy Old Style Bold" size="24.0" />
       </font>

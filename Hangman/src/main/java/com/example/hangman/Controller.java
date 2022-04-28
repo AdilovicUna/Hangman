@@ -20,28 +20,16 @@ public class Controller {
     private Button mainMenu;
 
     @FXML
-    private ToggleButton pickforme;
+    private ToggleGroup word_choosing;
 
     @FXML
-    private ToggleButton none;
+    private ToggleGroup difficulty;
 
     @FXML
-    private ToggleButton vowels;
+    private ToggleGroup type;
 
     @FXML
-    private ToggleButton d_easy;
-
-    @FXML
-    private ToggleButton d_medium;
-
-    @FXML
-    private ToggleButton t_noun;
-
-    @FXML
-    private ToggleButton t_verb;
-
-    @FXML
-    private ToggleButton t_adj;
+    private ToggleGroup show;
 
     @FXML
     private TextArea mw_textArea;
@@ -85,103 +73,33 @@ public class Controller {
     @FXML
     private Label word;
 
-    @FXML
-    private ToggleButton q;
-
-    @FXML
-    private ToggleButton w;
-
-    @FXML
-    private ToggleButton e;
-
-    @FXML
-    private ToggleButton r;
-
-    @FXML
-    private ToggleButton t;
-
-    @FXML
-    private ToggleButton y;
-
-    @FXML
-    private ToggleButton u;
-
-    @FXML
-    private ToggleButton i;
-
-    @FXML
-    private ToggleButton o;
-
-    @FXML
-    private ToggleButton p;
-
-    @FXML
-    private ToggleButton a;
-
-    @FXML
-    private ToggleButton s;
-
-    @FXML
-    private ToggleButton d;
-
-    @FXML
-    private ToggleButton f;
-
-    @FXML
-    private ToggleButton g;
-
-    @FXML
-    private ToggleButton h;
-
-    @FXML
-    private ToggleButton j;
-
-    @FXML
-    private ToggleButton k;
-
-    @FXML
-    private ToggleButton l;
-
-    @FXML
-    private ToggleButton z;
-
-    @FXML
-    private ToggleButton x;
-
-    @FXML
-    private ToggleButton c;
-
-    @FXML
-    private ToggleButton v;
-
-    @FXML
-    private ToggleButton b;
-
-    @FXML
-    private ToggleButton n;
-
-    @FXML
-    private ToggleButton m;
+    @FXML ToggleGroup abc;
 
     @FXML
     public void onNextClick()  throws IOException {
         try {
             if (Application.currWindowPath.equals("MyWord")) {
                 if (!correctText()) {
-                    Alert error2 = new Alert(Alert.AlertType.ERROR);
-                    error2.setTitle("Invalid word");
-                    error2.setHeaderText("INVALID WORD!");
-                    error2.setContentText("Please enter a word that contains only lowercase letters of the English alphabet");
-                    error2.showAndWait();
+                    invalidWordAlert();
                     return;
                 }
-                init_MyWord();
+                if (!init_MyWord()) {
+                    return;
+                }
                 Application.currWindowPath = "Gameplay";
             } else if (Application.currWindowPath.equals("PickForMe")) {
-                init_PickForMe();
+                if (!init_PickForMe()) {
+                    return;
+                }
                 Application.currWindowPath = "Gameplay";
             } else {
-                Application.currWindowPath = pickforme.isSelected() ? "PickForMe" : "MyWord";
+                ToggleButton button = (ToggleButton) word_choosing.getSelectedToggle();
+                if (button == null) {
+                    selectSomethingAlert();
+                    return;
+                } else {
+                    Application.currWindowPath = button.idProperty().getValue();
+                }
             }
             Application.switchWindows((Stage) next.getScene().getWindow());
         } catch (IOException e) {
@@ -189,7 +107,27 @@ public class Controller {
         }
     }
 
+    private void selectSomethingAlert() {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Invalid input");
+        error.setHeaderText("INVALID INPUT!");
+        error.setContentText("Please select at least one option from each category");
+        error.showAndWait();
+    }
+
+    private void invalidWordAlert() {
+        Alert error = new Alert(Alert.AlertType.ERROR);
+        error.setTitle("Invalid word");
+        error.setHeaderText("INVALID WORD!");
+        error.setContentText("Please enter a word that contains only lowercase letters of the English alphabet");
+        error.showAndWait();
+    }
+
     private Boolean correctText(){
+        if (mw_textArea.getText().length() == 0) {
+            return  false;
+        }
+
         for (Character ch: mw_textArea.getText().toCharArray()) {
             if (!Character.isAlphabetic(ch) || !Character.isLowerCase(ch)) {
                 return false;
@@ -208,16 +146,30 @@ public class Controller {
         }
     }
 
-    private void init_MyWord(){
-        String selectedShow = none.isSelected() ? "none" : vowels.isSelected() ? "vowels" : "random";
+    private Boolean init_MyWord(){
+        ToggleButton showButton = (ToggleButton) show.getSelectedToggle();
+        if (showButton == null) {
+            selectSomethingAlert();
+            return false;
+        }
+        String selectedShow = showButton.idProperty().getValue();
         Application.model = new Model(mw_textArea.getText(),selectedShow);
+        return true;
     }
 
-    private void init_PickForMe(){
-        String selectedDisplay = d_easy.isSelected() ? "easy" : d_medium.isSelected() ? "medium" : "hard";
-        String selectedType = t_noun.isSelected() ? "noun" : t_verb.isSelected() ? "verb" : t_adj.isSelected() ? "adjective": "random";
-        String selectedShow = none.isSelected() ? "none" : vowels.isSelected() ? "vowels" : "random";
-        Application.model = new Model(selectedDisplay, selectedType, selectedShow);
+    private Boolean init_PickForMe(){
+        ToggleButton difficultyButton = (ToggleButton) difficulty.getSelectedToggle();
+        ToggleButton typeButton = (ToggleButton) type.getSelectedToggle();
+        ToggleButton showButton = (ToggleButton) show.getSelectedToggle();
+        if (difficultyButton == null || typeButton == null || showButton == null) {
+            selectSomethingAlert();
+            return false;
+        }
+        String selectedDifficulty = difficultyButton.idProperty().getValue();
+        String selectedType = typeButton.idProperty().getValue();
+        String selectedShow = showButton.idProperty().getValue();
+        Application.model = new Model(selectedDifficulty, selectedType, selectedShow);
+        return true;
     }
 
     @FXML
@@ -240,7 +192,8 @@ public class Controller {
     }
 
     @FXML
-    public void onABCClick(ToggleButton button) throws IOException {
+    public void onABCClick() throws IOException {
+        ToggleButton button = (ToggleButton) abc.getSelectedToggle();
         button.setVisible(false);
         Character letter = button.idProperty().getValue().charAt(0);
         Application.model.updateWordToShow(letter);
@@ -271,133 +224,4 @@ public class Controller {
         }
     }
 
-    @FXML
-    public void onQClick() throws IOException {
-        onABCClick(q);
-    }
-
-    @FXML
-    public void onWClick() throws IOException {
-        onABCClick(w);
-    }
-
-    @FXML
-    public void onEClick() throws IOException {
-        onABCClick(e);
-    }
-
-    @FXML
-    public void onRClick() throws IOException {
-        onABCClick(r);
-    }
-
-    @FXML
-    public void onTClick() throws IOException {
-        onABCClick(t);
-    }
-
-    @FXML
-    public void onYClick() throws IOException {
-        onABCClick(y);
-    }
-
-    @FXML
-    public void onUClick() throws IOException {
-        onABCClick(u);
-    }
-
-    @FXML
-    public void onIClick() throws IOException {
-        onABCClick(i);
-    }
-
-    @FXML
-    public void onOClick() throws IOException {
-        onABCClick(o);
-    }
-
-    @FXML
-    public void onPClick() throws IOException {
-        onABCClick(p);
-    }
-
-    @FXML
-    public void onAClick() throws IOException {
-        onABCClick(a);
-    }
-
-    @FXML
-    public void onSClick() throws IOException {
-        onABCClick(s);
-    }
-
-    @FXML
-    public void onDClick() throws IOException {
-        onABCClick(d);
-    }
-
-    @FXML
-    public void onFClick() throws IOException {
-        onABCClick(f);
-    }
-
-    @FXML
-    public void onGClick() throws IOException {
-        onABCClick(g);
-    }
-
-    @FXML
-    public void onHClick() throws IOException {
-        onABCClick(h);
-    }
-
-    @FXML
-    public void onJClick() throws IOException {
-        onABCClick(j);
-    }
-
-    @FXML
-    public void onKClick() throws IOException {
-        onABCClick(k);
-    }
-
-    @FXML
-    public void onLClick() throws IOException {
-        onABCClick(l);
-    }
-
-    @FXML
-    public void onZClick() throws IOException {
-        onABCClick(z);
-    }
-
-    @FXML
-    public void onXClick() throws IOException {
-        onABCClick(x);
-    }
-
-    @FXML
-    public void onCClick() throws IOException {
-        onABCClick(c);
-    }
-
-    @FXML
-    public void onVClick() throws IOException {
-        onABCClick(v);
-    }
-
-    @FXML
-    public void onBClick() throws IOException {
-        onABCClick(b);
-    }
-
-    @FXML
-    public void onNClick() throws IOException {
-        onABCClick(n);
-    }
-
-    @FXML
-    public void onMClick() throws IOException {
-        onABCClick(m);
-    }
 }

@@ -15,12 +15,12 @@
 
 <AnchorPane maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" prefHeight="500.0" prefWidth="800.0" xmlns="http://javafx.com/javafx/17" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.hangman.Controller">
    <stylesheets>
-      <URL value="@stylesheet.css" />
+      <URL value="@../stylesheet.css" />
    </stylesheets>
    <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <ToggleButton fx:id="rand" layoutX="481.0" layoutY="372.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
+   <ToggleButton fx:id="random" layoutX="481.0" layoutY="372.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
@@ -96,7 +96,7 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <ToggleButton fx:id="d_hard" layoutX="479.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Hard">
+   <ToggleButton fx:id="hard" layoutX="479.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Hard">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
@@ -104,17 +104,17 @@
          <ToggleGroup fx:id="difficulty" />
       </toggleGroup>
    </ToggleButton>
-   <ToggleButton fx:id="d_medium" layoutX="338.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Medium" toggleGroup="$difficulty">
+   <ToggleButton fx:id="medium" layoutX="338.0" layoutY="224.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Medium" toggleGroup="$difficulty">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <ToggleButton fx:id="d_easy" layoutX="197.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="Easy" toggleGroup="$difficulty">
+   <ToggleButton fx:id="easy" layoutX="197.0" layoutY="223.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="Easy" toggleGroup="$difficulty">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <ToggleButton fx:id="t_adj" layoutX="409.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Adjective">
+   <ToggleButton fx:id="adjective" layoutX="409.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Adjective">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
@@ -122,12 +122,12 @@
          <ToggleGroup fx:id="type" />
       </toggleGroup>
    </ToggleButton>
-   <ToggleButton fx:id="t_verb" layoutX="268.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Verb" toggleGroup="$type">
+   <ToggleButton fx:id="verb" layoutX="268.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Verb" toggleGroup="$type">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <ToggleButton fx:id="t_noun" layoutX="127.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="Noun" toggleGroup="$type">
+   <ToggleButton fx:id="noun" layoutX="127.0" layoutY="299.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="Noun" toggleGroup="$type">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
@@ -220,7 +220,7 @@
          </RadialGradient>
       </textFill>
    </Label>
-   <ToggleButton fx:id="t_rand" layoutX="549.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random" toggleGroup="$type">
+   <ToggleButton fx:id="random" layoutX="549.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random" toggleGroup="$type">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
