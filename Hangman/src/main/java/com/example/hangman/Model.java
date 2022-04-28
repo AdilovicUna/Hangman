@@ -6,11 +6,14 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
 public class Model {
     public String wordToShow;
+    public ArrayList<Character> lettersShown = new ArrayList<Character>() {};
     public Boolean changed = false;
     private String word;
     private String[] types = {"adjective", "noun", "verb"};
@@ -29,37 +32,48 @@ public class Model {
     }
 
     private void pickDisplayLetters(String show){
-        char[] result = new char [word.length()];
+        System.out.println(word);
         switch (show){
             case "none":
-                for (int i = 0; i < word.length(); i++) {
-                    result[i] = '_';
-                }
                 break;
             case "vowels":
-                for (int i = 0; i < word.length(); i++) {
-                    if (isVowel(word.charAt(i))) {
-                        result[i] = word.charAt(i);
-                    } else {
-                        result[i] = '_';
-                    }
-                }
+                lettersShown.addAll(Arrays.asList('a', 'e', 'i', 'o', 'u'));
                 break;
             case "random":
-                for (int i = 0; i < word.length(); i++) {
-                    if (Math.random() < 0.2) {
-                        result[i] = word.charAt(i);
+                // show at most 30% of the word
+                int showCapacity = (int)(0.3 * word.length());
+                int showCount = 0;
+                while (true) {
+                    Character ch = getRandomCharacter();
+                    if (!lettersShown.contains(ch) && showCount < showCapacity) {
+                        lettersShown.add(ch);
+                        showCount += word.chars().filter(letter -> letter == ch).count();
                     } else {
-                        result[i] = '_';
+                        break;
                     }
                 }
                 break;
         }
-        wordToShow = String.valueOf(result);
+        createWordToShow();
     }
 
-    private Boolean isVowel(char ch){
-        return ch == 'a' || ch == 'e' || ch == 'i' || ch == 'o' || ch == 'u';
+    private Character getRandomCharacter(){
+        Random random = new Random();
+        int index = random.nextInt(word.length());
+        return word.charAt(index);
+    }
+
+    private void createWordToShow(){
+        char[] result = new char [word.length()];
+        for (int i = 0; i < word.length(); i++) {
+            Character ch = word.charAt(i);
+            if (lettersShown.contains(ch)) {
+                result[i] = ch;
+            } else {
+                result[i] = '_';
+            }
+        }
+        wordToShow = String.valueOf(result);
     }
 
     private String getRandomWord(String path) {

@@ -1,6 +1,7 @@
 package com.example.hangman;
 
 import javafx.fxml.FXML;
+import javafx.scene.Node;
 import javafx.scene.control.*;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
@@ -166,6 +167,14 @@ public class Controller {
     public void onNextClick()  throws IOException {
         try {
             if (Application.currWindowPath.equals("MyWord")) {
+                if (!correctText()) {
+                    Alert error2 = new Alert(Alert.AlertType.ERROR);
+                    error2.setTitle("Invalid word");
+                    error2.setHeaderText("INVALID WORD!");
+                    error2.setContentText("Please enter a word that contains only lowercase letters of the English alphabet");
+                    error2.showAndWait();
+                    return;
+                }
                 init_MyWord();
                 Application.currWindowPath = "Gameplay";
             } else if (Application.currWindowPath.equals("PickForMe")) {
@@ -178,6 +187,15 @@ public class Controller {
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    private Boolean correctText(){
+        for (Character ch: mw_textArea.getText().toCharArray()) {
+            if (!Character.isAlphabetic(ch) || !Character.isLowerCase(ch)) {
+                return false;
+            }
+        }
+        return true;
     }
 
     @FXML
@@ -212,6 +230,13 @@ public class Controller {
         hang3.visibleProperty().setValue(true);
         word.textProperty().setValue(Application.model.wordToShow);
         word.visibleProperty().setValue(true);
+
+        for (Node node: keyboard.getChildren()) {
+            ToggleButton button = (ToggleButton) node;
+            if (Application.model.lettersShown.contains(Character.toLowerCase(button.idProperty().getValue().charAt(0)))){
+                button.visibleProperty().setValue(false);
+            }
+        }
     }
 
     @FXML
