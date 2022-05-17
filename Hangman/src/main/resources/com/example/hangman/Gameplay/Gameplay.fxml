@@ -20,7 +20,7 @@
    <stylesheets>
       <URL value="@../stylesheet.css" />
    </stylesheets>
-   <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
+   <ImageView fx:id="backgroundImage" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
    <Label fx:id="title" layoutX="271.0" layoutY="54.0" text="Hangman" textAlignment="CENTER" visible="false">

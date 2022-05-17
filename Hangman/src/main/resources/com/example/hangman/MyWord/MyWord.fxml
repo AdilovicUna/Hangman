@@ -18,7 +18,7 @@
    <stylesheets>
       <URL value="@../stylesheet.css" />
    </stylesheets>
-   <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
+   <ImageView fx:id="backgroundImage" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
    <Label layoutX="271.0" layoutY="54.0" text="My Word" textAlignment="CENTER">
@@ -94,7 +94,7 @@
          <Font name="Goudy Old Style" size="20.0" />
       </font>
    </TextArea>
-   <ToggleButton fx:id="rand" layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
+   <ToggleButton fx:id="random" layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>

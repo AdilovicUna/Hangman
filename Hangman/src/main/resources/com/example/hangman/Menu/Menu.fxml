@@ -18,7 +18,7 @@
    <stylesheets>
       <URL value="@../stylesheet.css" />
    </stylesheets>
-   <ImageView fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
+   <ImageView fx:id="backgroundImage" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
    <ToggleButton fx:id="MyWord" layoutX="133.0" layoutY="217.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefHeight="50.0" prefWidth="200.0" selected="true" styleClass="toggle-buttons" text="My word">
@@ -60,7 +60,7 @@
          </RadialGradient>
       </textFill>
    </Label>
-   <Button layoutX="343.0" layoutY="352.0" mnemonicParsing="false" styleClass="buttons" text="Background">
+   <Button fx:id="background" layoutX="343.0" layoutY="352.0" mnemonicParsing="false" onAction="#onBackgroundClick" styleClass="buttons" text="Background">
       <font>
          <Font name="Goudy Old Style" size="20.0" />
       </font>

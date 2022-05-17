@@ -1,7 +1,5 @@
 package com.example.hangman;
 
-import org.controlsfx.control.tableview2.filter.filtereditor.SouthFilter;
-
 import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Path;
@@ -33,7 +31,6 @@ public class Model {
     }
 
     private void pickDisplayLetters(String show){
-        System.out.println(word);
         switch (show){
             case "none":
                 break;

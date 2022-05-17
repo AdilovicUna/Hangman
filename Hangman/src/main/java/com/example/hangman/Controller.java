@@ -3,6 +3,8 @@ package com.example.hangman;
 import javafx.fxml.FXML;
 import javafx.scene.Node;
 import javafx.scene.control.*;
+import javafx.scene.image.Image;
+import javafx.scene.image.ImageView;
 import javafx.scene.layout.AnchorPane;
 import javafx.scene.shape.Circle;
 import javafx.scene.shape.Line;
@@ -20,6 +22,12 @@ public class Controller {
     private Button mainMenu;
 
     @FXML
+    private Button background;
+
+    @FXML
+    private ImageView backgroundImage;
+
+    @FXML
     private ToggleGroup word_choosing;
 
     @FXML
@@ -30,6 +38,12 @@ public class Controller {
 
     @FXML
     private ToggleGroup show;
+
+    @FXML
+    private Label word;
+
+    @FXML
+    ToggleGroup abc;
 
     @FXML
     private TextArea mw_textArea;
@@ -70,38 +84,25 @@ public class Controller {
     @FXML
     private Line l_leg;
 
-    @FXML
-    private Label word;
+    public Controller() {
 
-    @FXML ToggleGroup abc;
+        String url = Application.currBackgroundPath;
 
-    @FXML
-    public void onNextClick()  throws IOException {
+        if (!url.equals("") && !url.equals(".")) {
+            System.out.println(url);
+            backgroundImage.setImage(new Image(Application.currBackgroundPath));
+        }
+    }
+
+    private void changeWindow(Stage stage) {
         try {
-            if (Application.currWindowPath.equals("MyWord")) {
-                if (!correctText()) {
-                    invalidWordAlert();
-                    return;
-                }
-                if (!init_MyWord()) {
-                    return;
-                }
-                Application.currWindowPath = "Gameplay";
-            } else if (Application.currWindowPath.equals("PickForMe")) {
-                if (!init_PickForMe()) {
-                    return;
-                }
-                Application.currWindowPath = "Gameplay";
-            } else {
-                ToggleButton button = (ToggleButton) word_choosing.getSelectedToggle();
-                if (button == null) {
-                    selectSomethingAlert();
-                    return;
-                } else {
-                    Application.currWindowPath = button.idProperty().getValue();
-                }
-            }
-            Application.switchWindows((Stage) next.getScene().getWindow());
+            Application.switchWindows(stage);
+//            if(Application.currWindowPath.equals("PickForMe")){
+//                difficulty.selectToggle(    );
+//                type.selectToggle(Application.type);
+//                show.selectToggle(Application.show);
+//            }
+
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -136,16 +137,6 @@ public class Controller {
         return true;
     }
 
-    @FXML
-    public void onMainMenuClick()  throws IOException {
-        try {
-            Application.currWindowPath = "Menu";
-            Application.switchWindows((Stage) mainMenu.getScene().getWindow());
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-    }
-
     private Boolean init_MyWord(){
         ToggleButton showButton = (ToggleButton) show.getSelectedToggle();
         if (showButton == null) {
@@ -154,6 +145,7 @@ public class Controller {
         }
         String selectedShow = showButton.idProperty().getValue();
         Application.model = new Model(mw_textArea.getText(),selectedShow);
+        setConfig(Application.currBackgroundPath, Application.difficulty, Application.type, selectedShow);
         return true;
     }
 
@@ -169,7 +161,54 @@ public class Controller {
         String selectedType = typeButton.idProperty().getValue();
         String selectedShow = showButton.idProperty().getValue();
         Application.model = new Model(selectedDifficulty, selectedType, selectedShow);
+        setConfig(Application.currBackgroundPath, selectedDifficulty, selectedType, selectedShow);
         return true;
+    }
+
+    private void setConfig(String newCurrBackgroundPath, String newDifficulty, String newType, String newShow)
+    {
+        Application.writeConfig(newCurrBackgroundPath, newDifficulty, newType, newShow);
+    }
+
+    @FXML
+    public void onNextClick(){
+        if (Application.currWindowPath.equals("MyWord")) {
+            if (!correctText()) {
+                invalidWordAlert();
+                return;
+            }
+            if (!init_MyWord()) {
+                return;
+            }
+            Application.currWindowPath = "Gameplay";
+        } else if (Application.currWindowPath.equals("PickForMe")) {
+            if (!init_PickForMe()) {
+                return;
+            }
+            Application.currWindowPath = "Gameplay";
+        } else {
+            ToggleButton button = (ToggleButton) word_choosing.getSelectedToggle();
+            if (button == null) {
+                selectSomethingAlert();
+                return;
+            } else {
+                Application.currWindowPath = button.idProperty().getValue();
+            }
+        }
+        changeWindow((Stage) next.getScene().getWindow());
+    }
+
+    @FXML
+    public void onMainMenuClick(){
+        Application.currWindowPath = "Menu";
+        changeWindow((Stage) mainMenu.getScene().getWindow());
+    }
+
+    @FXML
+    public void onBackgroundClick()
+    {
+        Application.fileChooserDisplay((Stage) background.getScene().getWindow());
+        backgroundImage.setImage(new Image(Application.currBackgroundPath));
     }
 
     @FXML
@@ -192,7 +231,7 @@ public class Controller {
     }
 
     @FXML
-    public void onABCClick() throws IOException {
+    public void onABCClick(){
         ToggleButton button = (ToggleButton) abc.getSelectedToggle();
         button.setVisible(false);
         Character letter = button.idProperty().getValue().charAt(0);
@@ -201,7 +240,7 @@ public class Controller {
 
         if (Application.model.finished) {
             Application.currWindowPath = "Win";
-            Application.switchWindows((Stage) mainMenu.getScene().getWindow());
+            changeWindow((Stage) mainMenu.getScene().getWindow());
         }
 
         if (!Application.model.changed){
@@ -219,9 +258,8 @@ public class Controller {
                l_leg.setVisible(true);
            } else {
                Application.currWindowPath = "GameOver";
-               Application.switchWindows((Stage) mainMenu.getScene().getWindow());
+               changeWindow((Stage) mainMenu.getScene().getWindow());
            }
         }
     }
-
 }
