@@ -11,3 +11,8 @@
     -fx-color: MintCream;
     -fx-border-radius: 80px;
 }
+
+.text.label .text {
+    -fx-stroke: black;
+    -fx-stroke-width: 1px;
+}

@@ -39,7 +39,7 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <Label fx:id="title1" layoutX="182.0" layoutY="100.0" text="Congratulations!" textAlignment="CENTER">
+   <Label fx:id="title1" layoutX="182.0" layoutY="100.0" styleClass="text" text="Congratulations!" textAlignment="CENTER">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>
@@ -65,7 +65,7 @@
          </RadialGradient>
       </textFill>
    </Label>
-   <Label fx:id="title11" layoutX="265.0" layoutY="213.0" text="You Won!" textAlignment="CENTER">
+   <Label fx:id="title11" layoutX="265.0" layoutY="213.0" styleClass="text" text="You Won!" textAlignment="CENTER">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>

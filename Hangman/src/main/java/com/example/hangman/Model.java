@@ -14,7 +14,7 @@ public class Model {
     public ArrayList<Character> lettersShown = new ArrayList<Character>() {};
     public Boolean changed = false;
     public Boolean finished = false;
-    private String word;
+    private String word = "";
     private String[] types = {"adjective", "noun", "verb"};
 
     public Model(String myWord, String show) {
@@ -23,7 +23,7 @@ public class Model {
     }
 
     public Model(String difficulty, String type, String show) {
-        if (type.equals("random")) {
+        if (type.contains("random")) {
             type = types[new Random().nextInt(types.length)];
         }
         word = getRandomWord(String.format("/%s/%s.txt",difficulty,type));
@@ -31,6 +31,10 @@ public class Model {
     }
 
     private void pickDisplayLetters(String show){
+        if (show.contains("random"))
+        {
+            show = "random";
+        }
         switch (show){
             case "none":
                 break;

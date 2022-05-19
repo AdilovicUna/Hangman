@@ -28,6 +28,11 @@ public class Application extends javafx.application.Application {
         switchWindows(stage);
     }
 
+    @Override
+    public void stop() {
+        writeConfig();
+    }
+
     private void readConfig()
     {
         Path pathToFile = Paths.get(configPath);
@@ -52,6 +57,14 @@ public class Application extends javafx.application.Application {
         if (newCurrBackgroundPath.equals("")){
             newCurrBackgroundPath = ".";
         }
+        if(newShow.contains("random"))
+        {
+            newShow = "random";
+        }
+        if(newType.contains("random"))
+        {
+            newType = "random";
+        }
         String s = "currBackgroundPath " + newCurrBackgroundPath + '\n';
         s += "difficulty " + newDifficulty + '\n';
         s += "type " + newType + '\n';
@@ -72,6 +85,10 @@ public class Application extends javafx.application.Application {
         show = newShow;
     }
 
+    protected static void writeConfig() {
+        writeConfig(currBackgroundPath,difficulty,type,show);
+    }
+
     protected static void switchWindows(Stage stage)  throws IOException {
         FXMLLoader fxmlLoader = new FXMLLoader(Application.class.getResource(String.format("%s/%s.fxml", currWindowPath, currWindowPath)));
         Scene scene = new Scene(fxmlLoader.load());
@@ -90,7 +107,7 @@ public class Application extends javafx.application.Application {
                 new FileChooser.ExtensionFilter("Image Files", "*.png", "*.jpg"));
         fileChooser.setInitialDirectory(new File("src/main/resources/com/example/hangman/Backgrounds"));
         File selectedFile = fileChooser.showOpenDialog(stage);
-        currBackgroundPath = selectedFile.toString();
+        currBackgroundPath = selectedFile.toString();;
         writeConfig(currBackgroundPath, difficulty, type, show);
     }
 

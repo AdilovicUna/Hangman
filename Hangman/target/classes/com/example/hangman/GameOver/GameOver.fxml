@@ -39,7 +39,7 @@
          </RadialGradient>
       </textFill>
    </Button>
-   <Label fx:id="title1" layoutX="251.0" layoutY="176.0" text="Game Over" textAlignment="CENTER">
+   <Label layoutX="251.0" layoutY="176.0" styleClass="text" text="Game Over" textAlignment="CENTER">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>

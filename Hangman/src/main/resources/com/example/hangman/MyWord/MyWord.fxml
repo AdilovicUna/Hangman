@@ -21,7 +21,7 @@
    <ImageView fx:id="backgroundImage" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <Label layoutX="271.0" layoutY="54.0" text="My Word" textAlignment="CENTER">
+   <Label layoutX="271.0" layoutY="54.0" styleClass="text" text="My Word" textAlignment="CENTER">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>
@@ -94,7 +94,7 @@
          <Font name="Goudy Old Style" size="20.0" />
       </font>
    </TextArea>
-   <ToggleButton fx:id="random" layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
+   <ToggleButton fx:id="random" layoutX="479.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOptionToggleClick" prefWidth="125.0" styleClass="toggle-buttons" text="Random">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
@@ -102,17 +102,17 @@
          <ToggleGroup fx:id="show" />
       </toggleGroup>
    </ToggleButton>
-   <ToggleButton fx:id="none" layoutX="197.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="None" toggleGroup="$show">
+   <ToggleButton fx:id="none" layoutX="197.0" layoutY="353.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOptionToggleClick" prefWidth="125.0" selected="true" styleClass="toggle-buttons" text="None" toggleGroup="$show">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <ToggleButton fx:id="vowels" layoutX="338.0" layoutY="354.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" prefWidth="125.0" styleClass="toggle-buttons" text="Vowels" toggleGroup="$show">
+   <ToggleButton fx:id="vowels" layoutX="338.0" layoutY="354.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOptionToggleClick" prefWidth="125.0" styleClass="toggle-buttons" text="Vowels" toggleGroup="$show">
       <font>
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <Label layoutX="373.0" layoutY="321.0" text="Show" textAlignment="CENTER">
+   <Label layoutX="373.0" layoutY="321.0" styleClass="text" text="Show" textAlignment="CENTER">
       <font>
          <Font name="Goudy Old Style Bold" size="24.0" />
       </font>

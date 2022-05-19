@@ -11,6 +11,7 @@ import javafx.scene.shape.Line;
 import javafx.scene.shape.Polyline;
 import javafx.stage.Stage;
 
+import java.io.File;
 import java.io.IOException;
 
 public class Controller {
@@ -34,10 +35,40 @@ public class Controller {
     private ToggleGroup difficulty;
 
     @FXML
+    private ToggleButton easy;
+
+    @FXML
+    private ToggleButton medium;
+
+    @FXML
+    private ToggleButton hard;
+
+    @FXML
     private ToggleGroup type;
 
     @FXML
+    private ToggleButton noun;
+
+    @FXML
+    private ToggleButton verb;
+
+    @FXML
+    private ToggleButton adjective;
+
+    @FXML
+    private ToggleButton randomT;
+
+    @FXML
     private ToggleGroup show;
+
+    @FXML
+    private ToggleButton none;
+
+    @FXML
+    private ToggleButton vowels;
+
+    @FXML
+    private ToggleButton randomS;
 
     @FXML
     private Label word;
@@ -84,25 +115,81 @@ public class Controller {
     @FXML
     private Line l_leg;
 
-    public Controller() {
+    @FXML
+    public void initialize() {
 
         String url = Application.currBackgroundPath;
 
-        if (!url.equals("") && !url.equals(".")) {
-            System.out.println(url);
-            backgroundImage.setImage(new Image(Application.currBackgroundPath));
+        try
+        {
+            if (!url.equals("") && !url.equals(".")) {
+                url = new File(Application.currBackgroundPath).toString();
+                backgroundImage.setImage(new Image(url));
+            }
+
+            if(Application.currWindowPath.equals("PickForMe")){
+                setToggles();
+            }
+
+            else if(Application.currWindowPath.equals("MyWord")){
+                setShow();
+            }
+
+        } catch (IllegalArgumentException fe) {
+            System.out.println("Config file not valid");
+        }
+    }
+
+    private void setToggles()
+    {
+       setDifficulty();
+       setType();
+       setShow();
+    }
+
+    public void setDifficulty()
+    {
+        if (!Application.difficulty.equals(difficulty.getSelectedToggle().toString()))
+        {
+            switch (Application.difficulty) {
+                case "easy" -> difficulty.selectToggle(easy);
+                case "medium" -> difficulty.selectToggle(medium);
+                case "heard" -> difficulty.selectToggle(hard);
+                default -> throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public void setType()
+    {
+        if (!Application.type.equals(type.getSelectedToggle().toString()))
+        {
+            switch (Application.type) {
+                case "noun" -> type.selectToggle(noun);
+                case "verb" -> type.selectToggle(verb);
+                case "adjective" -> type.selectToggle(adjective);
+                case "random" -> type.selectToggle(randomT);
+                default -> throw new IllegalArgumentException();
+            }
+        }
+    }
+
+    public void setShow()
+    {
+        if (!Application.show.equals(show.getSelectedToggle().toString()))
+        {
+            switch (Application.show) {
+                case "none" -> show.selectToggle(none);
+                case "vowels" -> show.selectToggle(vowels);
+                case "random" -> show.selectToggle(randomS);
+                default -> throw new IllegalArgumentException();
+            }
         }
     }
 
     private void changeWindow(Stage stage) {
         try {
             Application.switchWindows(stage);
-//            if(Application.currWindowPath.equals("PickForMe")){
-//                difficulty.selectToggle(    );
-//                type.selectToggle(Application.type);
-//                show.selectToggle(Application.show);
-//            }
-
         } catch (IOException e) {
             e.printStackTrace();
         }
@@ -145,7 +232,6 @@ public class Controller {
         }
         String selectedShow = showButton.idProperty().getValue();
         Application.model = new Model(mw_textArea.getText(),selectedShow);
-        setConfig(Application.currBackgroundPath, Application.difficulty, Application.type, selectedShow);
         return true;
     }
 
@@ -157,11 +243,10 @@ public class Controller {
             selectSomethingAlert();
             return false;
         }
-        String selectedDifficulty = difficultyButton.idProperty().getValue();
-        String selectedType = typeButton.idProperty().getValue();
-        String selectedShow = showButton.idProperty().getValue();
+        String selectedDifficulty = difficultyButton.getId();
+        String selectedType = typeButton.getId();
+        String selectedShow = showButton.getId();
         Application.model = new Model(selectedDifficulty, selectedType, selectedShow);
-        setConfig(Application.currBackgroundPath, selectedDifficulty, selectedType, selectedShow);
         return true;
     }
 
@@ -208,7 +293,8 @@ public class Controller {
     public void onBackgroundClick()
     {
         Application.fileChooserDisplay((Stage) background.getScene().getWindow());
-        backgroundImage.setImage(new Image(Application.currBackgroundPath));
+        String url = new File(Application.currBackgroundPath).toString();
+        backgroundImage.setImage(new Image(url));
     }
 
     @FXML
@@ -262,4 +348,24 @@ public class Controller {
            }
         }
     }
+
+    @FXML
+    public void onOptionToggleClick()
+    {
+        String diff = Application.difficulty;
+        if (difficulty != null)
+        {
+            diff = ((ToggleButton) difficulty.getSelectedToggle()).getId();
+        }
+
+        String ty = Application.difficulty;
+        if (type != null)
+        {
+            ty = ((ToggleButton) type.getSelectedToggle()).getId();
+        }
+
+        String sh = ((ToggleButton) show.getSelectedToggle()).getId();
+        setConfig(Application.currBackgroundPath, diff , ty, sh);
+    }
+
 }

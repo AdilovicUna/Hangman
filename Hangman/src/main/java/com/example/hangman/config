@@ -1,4 +1,4 @@
-currBackgroundPath C:\Users\Una\Desktop\Java\Hangman\Hangman\src\main\resources\com\example\hangman\Backgrounds\background3.jpg
+currBackgroundPath C:\Users\Una\Desktop\Java\Hangman\Hangman\src\main\resources\com\example\hangman\Backgrounds\default.jpg
 difficulty easy
-type noun
-show none
+type easy
+show random

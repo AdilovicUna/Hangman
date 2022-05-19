@@ -23,7 +23,7 @@
    <ImageView fx:id="backgroundImage" fitHeight="500.0" fitWidth="800.0" pickOnBounds="true" smooth="false">
       <Image url="@../Backgrounds/default.jpg" />
    </ImageView>
-   <Label fx:id="title" layoutX="271.0" layoutY="54.0" text="Hangman" textAlignment="CENTER" visible="false">
+   <Label fx:id="title" layoutX="271.0" layoutY="54.0" styleClass="text" text="Hangman" textAlignment="CENTER" visible="false">
       <font>
          <Font name="Goudy Old Style Bold" size="64.0" />
       </font>
