@@ -142,83 +142,20 @@
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <Label layoutX="375.0" layoutY="340.0" styleClass="text" text="Show" textAlignment="CENTER">
+   <Label layoutX="360.0" layoutY="335.0" styleClass="text" text="Show" textAlignment="CENTER" textFill="#c7c3c3">
       <font>
-         <Font name="Goudy Old Style Bold" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="32.0" />
       </font>
-      <textFill>
-         <RadialGradient centerX="0.5036900228239953" centerY="0.544164049888635" radius="0.5">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="0.007633587786259542">
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.7894737124443054" green="0.7675438523292542" blue="0.7675438523292542" />
-                  </color>
-               </Stop>
-            </stops>
-         </RadialGradient>
-      </textFill>
    </Label>
-   <Label layoutX="353.0" layoutY="189.0" styleClass="text" text="Difficulty" textAlignment="CENTER">
+   <Label layoutX="338.0" layoutY="184.0" styleClass="text" text="Difficulty" textAlignment="CENTER" textFill="#c7c3c3">
       <font>
-         <Font name="Goudy Old Style Bold" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="32.0" />
       </font>
-      <textFill>
-         <RadialGradient centerX="0.5036900228239953" centerY="0.544164049888635" radius="0.5">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="0.007633587786259542">
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.7894737124443054" green="0.7675438523292542" blue="0.7675438523292542" />
-                  </color>
-               </Stop>
-            </stops>
-         </RadialGradient>
-      </textFill>
    </Label>
-   <Label layoutX="376.0" layoutY="265.0" styleClass="text" text="Type" textAlignment="CENTER">
+   <Label layoutX="361.0" layoutY="260.0" styleClass="text" text="Type" textAlignment="CENTER" textFill="#c7c3c3">
       <font>
-         <Font name="Goudy Old Style Bold" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="32.0" />
       </font>
-      <textFill>
-         <RadialGradient centerX="0.5036900228239953" centerY="0.544164049888635" radius="0.5">
-            <stops>
-               <Stop>
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="0.007633587786259542">
-                  <color>
-                     <Color red="1.0" green="0.9876543283462524" blue="0.9876543283462524" />
-                  </color>
-               </Stop>
-               <Stop offset="1.0">
-                  <color>
-                     <Color red="0.7894737124443054" green="0.7675438523292542" blue="0.7675438523292542" />
-                  </color>
-               </Stop>
-            </stops>
-         </RadialGradient>
-      </textFill>
    </Label>
    <ToggleButton fx:id="randomT" layoutX="549.0" layoutY="300.0" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" mnemonicParsing="false" onAction="#onOptionToggleClick" prefWidth="125.0" styleClass="toggle-buttons" text="Random" toggleGroup="$type">
       <font>

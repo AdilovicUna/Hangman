@@ -14,107 +14,212 @@ import javafx.stage.Stage;
 import java.io.File;
 import java.io.IOException;
 
+/**
+ * Controller class
+ */
 public class Controller {
 
+    /**
+     * next button from the application
+     */
     @FXML
     private Button next;
 
+    /**
+     * main menu button from the application
+     */
     @FXML
     private Button mainMenu;
 
+    /**
+     * background button from the application
+     */
     @FXML
     private Button background;
 
+    /**
+     * background attribute of the application
+     */
     @FXML
     private ImageView backgroundImage;
 
+    /**
+     *  toggle group for the word options of the game
+     */
     @FXML
     private ToggleGroup word_choosing;
 
+    /**
+     * toggle group for the difficulty options of the word
+     */
     @FXML
     private ToggleGroup difficulty;
 
+    /**
+     * toggle button for the easy option of the difficulty of the word
+     */
     @FXML
     private ToggleButton easy;
 
+    /**
+     * toggle button for the medium option of the difficulty of the word
+     */
     @FXML
     private ToggleButton medium;
 
+    /**
+     * toggle button for the hard option of the difficulty of the word
+     */
     @FXML
     private ToggleButton hard;
 
+    /**
+     * toggle group for the type options of the word
+     */
     @FXML
     private ToggleGroup type;
 
+    /**
+     * toggle button for the noun option of the type of the word
+     */
     @FXML
     private ToggleButton noun;
 
+    /**
+     * toggle button for the verb option of the type of the word
+     */
     @FXML
     private ToggleButton verb;
 
+    /**
+     * toggle button for the adjective option of the type of the word
+     */
     @FXML
     private ToggleButton adjective;
 
+    /**
+     * toggle button for the random option of the type of the word
+     */
     @FXML
     private ToggleButton randomT;
 
+    /**
+     * toggle group for the show options of the word
+     */
     @FXML
     private ToggleGroup show;
 
+    /**
+     * toggle button for the none option of the show of the word
+     */
     @FXML
     private ToggleButton none;
 
+    /**
+     * toggle button for the vowels option of the show of the word
+     */
     @FXML
     private ToggleButton vowels;
 
+    /**
+     * toggle button for the random option of the show of the word
+     */
     @FXML
     private ToggleButton randomS;
 
+    /**
+     * label of the chosen word in the game
+     */
     @FXML
     private Label word;
 
+    /**
+     * toggle group for the keyboard property in the game
+     */
     @FXML
     ToggleGroup abc;
 
+    /**
+     * text area of the shown word in the game
+     */
     @FXML
     private TextArea mw_textArea;
 
+    /**
+     * start button from the application
+     */
     @FXML
     private Button start;
 
+    /**
+     * anchor pane for the keyboard property in the game
+     */
     @FXML
     private AnchorPane keyboard;
 
+    /**
+     * label for the title
+     */
     @FXML
     private Label title;
 
+    /**
+     * part of the hang drawing in the game
+     */
     @FXML
     private Polyline hang1;
 
+    /**
+     * part of the hang drawing in the game
+     */
     @FXML
     private Polyline hang2;
 
+    /**
+     * part of the hang drawing in the game
+     */
     @FXML
     private Line hang3;
 
+    /**
+     * head of the hanged man in the game
+     */
     @FXML
     private Circle head;
 
+    /**
+     * body of the hanged man in the game
+     */
     @FXML
     private Line body;
 
+    /**
+     * right arm of the hanged man in the game
+     */
     @FXML
     private Line r_arm;
 
+    /**
+     * left arm of the hanged man in the game
+     */
     @FXML
     private Line l_arm;
 
+    /**
+     * right leg of the hanged man in the game
+     */
     @FXML
     private Line r_leg;
 
+    /**
+     * left leg of the hanged man in the game
+     */
     @FXML
     private Line l_leg;
 
+    /**
+     * initializes the controller
+     */
     @FXML
     public void initialize() {
 
@@ -140,6 +245,9 @@ public class Controller {
         }
     }
 
+    /**
+     * selects proper toggles based on the config file
+     */
     private void setToggles()
     {
        setDifficulty();
@@ -147,6 +255,9 @@ public class Controller {
        setShow();
     }
 
+    /**
+     * selects proper difficulty toggle based on the config file
+     */
     public void setDifficulty()
     {
         if (!Application.difficulty.equals(difficulty.getSelectedToggle().toString()))
@@ -160,6 +271,9 @@ public class Controller {
         }
     }
 
+    /**
+     * selects proper type toggle based on the config file
+     */
     public void setType()
     {
         if (!Application.type.equals(type.getSelectedToggle().toString()))
@@ -174,6 +288,9 @@ public class Controller {
         }
     }
 
+    /**
+     * selects proper show toggle based on the config file
+     */
     public void setShow()
     {
         if (!Application.show.equals(show.getSelectedToggle().toString()))
@@ -187,6 +304,10 @@ public class Controller {
         }
     }
 
+    /**
+     * calls the switchWindows method from the Application
+     * @param stage stage of the current window
+     */
     private void changeWindow(Stage stage) {
         try {
             Application.switchWindows(stage);
@@ -195,6 +316,9 @@ public class Controller {
         }
     }
 
+    /**
+     * display the alert when one of the toggle groups does not have anything selected
+     */
     private void selectSomethingAlert() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Invalid input");
@@ -203,6 +327,9 @@ public class Controller {
         error.showAndWait();
     }
 
+    /**
+     * display the alert when the word doesn't have a valid format
+     */
     private void invalidWordAlert() {
         Alert error = new Alert(Alert.AlertType.ERROR);
         error.setTitle("Invalid word");
@@ -211,6 +338,10 @@ public class Controller {
         error.showAndWait();
     }
 
+    /**
+     * check the format of the word
+     * @return true if the format is correct
+     */
     private Boolean correctText(){
         if (mw_textArea.getText().length() == 0) {
             return  false;
@@ -224,6 +355,10 @@ public class Controller {
         return true;
     }
 
+    /**
+     * initialize the model of the Application
+     * @return true if the model was initialized correctly
+     */
     private Boolean init_MyWord(){
         ToggleButton showButton = (ToggleButton) show.getSelectedToggle();
         if (showButton == null) {
@@ -235,6 +370,10 @@ public class Controller {
         return true;
     }
 
+    /**
+     * initialize the model of the Application
+     * @return true if the model was initialized correctly
+     */
     private Boolean init_PickForMe(){
         ToggleButton difficultyButton = (ToggleButton) difficulty.getSelectedToggle();
         ToggleButton typeButton = (ToggleButton) type.getSelectedToggle();
@@ -250,11 +389,21 @@ public class Controller {
         return true;
     }
 
+    /**
+     * calls the writeConfig method from the Application
+     * @param newCurrBackgroundPath new variable for currBackgroundPaths
+     * @param newDifficulty new variable for difficulty
+     * @param newType new variable for type
+     * @param newShow new variable for show
+     */
     private void setConfig(String newCurrBackgroundPath, String newDifficulty, String newType, String newShow)
     {
         Application.writeConfig(newCurrBackgroundPath, newDifficulty, newType, newShow);
     }
 
+    /**
+     * called when the next button is clicked
+     */
     @FXML
     public void onNextClick(){
         if (Application.currWindowPath.equals("MyWord")) {
@@ -283,12 +432,18 @@ public class Controller {
         changeWindow((Stage) next.getScene().getWindow());
     }
 
+    /**
+     * called when the next button is clicked
+     */
     @FXML
     public void onMainMenuClick(){
         Application.currWindowPath = "Menu";
         changeWindow((Stage) mainMenu.getScene().getWindow());
     }
 
+    /**
+     * called when the background button is clicked
+     */
     @FXML
     public void onBackgroundClick()
     {
@@ -297,6 +452,9 @@ public class Controller {
         backgroundImage.setImage(new Image(url));
     }
 
+    /**
+     * called when the start button is clicked
+     */
     @FXML
     private void onStartClicked(){
         start.visibleProperty().setValue(false);
@@ -316,6 +474,9 @@ public class Controller {
         }
     }
 
+    /**
+     * called when one of the keyboard toggle buttons is clicked
+     */
     @FXML
     public void onABCClick(){
         ToggleButton button = (ToggleButton) abc.getSelectedToggle();
@@ -349,6 +510,9 @@ public class Controller {
         }
     }
 
+    /**
+     * called when the one of the options toggle buttons is clicked
+     */
     @FXML
     public void onOptionToggleClick()
     {
@@ -365,6 +529,7 @@ public class Controller {
         }
 
         String sh = ((ToggleButton) show.getSelectedToggle()).getId();
+
         setConfig(Application.currBackgroundPath, diff , ty, sh);
     }
 

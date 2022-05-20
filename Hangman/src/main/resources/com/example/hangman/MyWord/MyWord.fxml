@@ -112,9 +112,9 @@
          <Font name="Goudy Old Style Bold" size="18.0" />
       </font>
    </ToggleButton>
-   <Label layoutX="373.0" layoutY="321.0" styleClass="text" text="Show" textAlignment="CENTER">
+   <Label layoutX="365.0" layoutY="315.0" styleClass="text" text="Show" textAlignment="CENTER">
       <font>
-         <Font name="Goudy Old Style Bold" size="24.0" />
+         <Font name="Goudy Old Style Bold" size="32.0" />
       </font>
       <textFill>
          <RadialGradient centerX="0.5036900228239953" centerY="0.544164049888635" radius="0.5">

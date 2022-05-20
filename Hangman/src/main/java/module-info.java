@@ -1,3 +1,6 @@
+/**
+ * Module for this game
+ */
 module com.example.hangman {
     requires javafx.controls;
     requires javafx.fxml;

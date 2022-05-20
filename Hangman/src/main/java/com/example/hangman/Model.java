@@ -9,20 +9,54 @@ import java.util.Arrays;
 import java.util.List;
 import java.util.Random;
 
+/**
+ * Model class
+ */
 public class Model {
+    /**
+     * word as it will be displayed in the game
+     */
     public String wordToShow;
-    public ArrayList<Character> lettersShown = new ArrayList<Character>() {};
-    public Boolean changed = false;
-    public Boolean finished = false;
-    private String word = "";
-    private String[] types = {"adjective", "noun", "verb"};
 
+    /**
+     * letters of the word that are reviled in the game
+     */
+    public ArrayList<Character> lettersShown = new ArrayList<>() {};
+
+    /**
+     * true if there were any changes made to the wordToShow
+     */
+    public Boolean changed = false;
+
+    /**
+     * true when word equals wordToShow
+     */
+    public Boolean finished = false;
+
+    /**
+     * original word
+     */
+    private final String word;
+
+    /**
+     * constructor of the Model class
+     * @param myWord original word
+     * @param show show option
+     */
     public Model(String myWord, String show) {
         word = myWord;
         pickDisplayLetters(show);
     }
 
+    /**
+     * constructor of the Model class
+     * @param difficulty difficulty option
+     * @param type type option
+     * @param show show option
+     */
     public Model(String difficulty, String type, String show) {
+        String[] types = {"adjective", "noun", "verb"};
+
         if (type.contains("random")) {
             type = types[new Random().nextInt(types.length)];
         }
@@ -30,6 +64,10 @@ public class Model {
         pickDisplayLetters(show);
     }
 
+    /**
+     * picks which letters will be displayed based on the show parameter
+     * @param show show option
+     */
     private void pickDisplayLetters(String show){
         if (show.contains("random"))
         {
@@ -59,12 +97,19 @@ public class Model {
         createWordToShow();
     }
 
+    /**
+     * gets a random character from the word
+     * @return a random character from the word
+     */
     private Character getRandomCharacter(){
         Random random = new Random();
         int index = random.nextInt(word.length());
         return word.charAt(index);
     }
 
+    /**
+     * creates wordToShow based on the word and lettersShown
+     */
     private void createWordToShow(){
         char[] result = new char [word.length()];
         for (int i = 0; i < word.length(); i++) {
@@ -78,6 +123,11 @@ public class Model {
         wordToShow = String.valueOf(result);
     }
 
+    /**
+     * reads a random word from the file in the path
+     * @param path path to one of the WORD files
+     * @return word
+     */
     private String getRandomWord(String path) {
         List<String> allWords;
         try {
@@ -93,6 +143,10 @@ public class Model {
         return allWords.get(random.nextInt(allWords.size()));
     }
 
+    /**
+     * reveals all instances of the character ch in the wordToShow
+     * @param ch a letter to be added
+     */
     protected void updateWordToShow(Character ch){
         char[] result = new char [word.length()];
         for (int i = 0; i < word.length(); i++) {
