@@ -8,7 +8,7 @@ All of your options are saved and reloaded the next time you play.
 ### Requirements:
 
 - [IntelliJ IDEA](https://www.jetbrains.com/idea/) (Community Edition 2021.3.3)
-- [Java JDK](https://www.oracle.com/java/technologies/downloads/#java17)(Java 17)
+- [Java JDK](https://www.oracle.com/java/technologies/downloads/#java17) (Java 17)
 
 ### Running the program:
 
